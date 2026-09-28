@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tournament Ranking System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🏆 Tournament Ranking System</h1>
+
+    <p>DSA Based Tournament Management System</p>
+
+</header>
+
+
+<main>
+
+    <!-- ADD TEAM -->
+
+    <section class="panel">
+
+        <h2>👥 Add Team</h2>
+
+        <form action="/add_team" method="POST">
+
+            <input
+                type="text"
+                name="team_name"
+                placeholder="Enter team name"
+                required
+            >
+
+            <button type="submit">
+                Add Team
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- TEAM STATISTICS -->
+
+    <section class="panel">
+
+        <h2>📊 Team Statistics</h2>
+
+        {% if teams %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Team</th>
+                    <th>Played</th>
+                    <th>Won</th>
+                    <th>Draw</th>
+                    <th>Lost</th>
+                    <th>Points</th>
+                    <th>Score Diff</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for team in teams %}
+
+                <tr>
+
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.played }}</td>
+                    <td>{{ team.wins }}</td>
+                    <td>{{ team.draws }}</td>
+                    <td>{{ team.losses }}</td>
+                    <td>{{ team.points }}</td>
+
+                    <td>
+                        {% if team.score_difference >= 0 %}
+                        +{{ team.score_difference }}
+                        {% else %}
+                        {{ team.score_difference }}
+                        {% endif %}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p>No teams added yet.</p>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- RECORD MATCH -->
+
+    <section class="panel">
+
+        <h2>⚔️ Record Match</h2>
+
+        <form action="/record_match" method="POST">
+
+            <label>Team A:</label>
+
+            <select name="team_a" required>
+
+                <option value="">
+                    Select Team A
+                </option>
+
+                {% for team in teams %}
+
+                <option value="{{ team.name }}">
+                    {{ team.name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Score:</label>
+
+            <input
+                type="number"
+                name="score_a"
+                min="0"
+                placeholder="Score"
+                required
+            >
+
+
+            <br><br>
+
+
+            <label>Team B:</label>
+
+            <select name="team_b" required>
+
+                <option value="">
+                    Select Team B
+                </option>
+
+                {% for team in teams %}
+
+                <option value="{{ team.name }}">
+                    {{ team.name }}
+                </option>
+
+                {% endfor %}
+
+            </select>
+
+
+            <label>Score:</label>
+
+            <input
+                type="number"
+                name="score_b"
+                min="0"
+                placeholder="Score"
+                required
+            >
+
+
+            <br><br>
+
+
+            <button type="submit">
+                Record Match
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- SEARCH BST -->
+
+    <section class="panel">
+
+        <h2>🔎 Search Team Using BST</h2>
+
+        <form action="/search" method="POST">
+
+            <input
+                type="text"
+                name="team_name"
+                placeholder="Enter team name"
+                required
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+    </section>
+
+<!-- MAX HEAP -->
+
+<section class="panel">
+
+    <h2>🔥 Top 3 Teams Using Max Heap</h2>
+
+    {% if top_teams %}
+
+    <div class="top-teams">
+
+        {% for team in top_teams %}
+
+        <div class="top-team">
+
+            <div class="rank">
+                #{{ loop.index }}
+            </div>
+
+            <div class="team-info">
+
+                <h3>{{ team.name }}</h3>
+
+                <p>
+                    <strong>{{ team.points }}</strong> Points
+                    &nbsp; | &nbsp;
+                    {{ team.wins }} Wins
+                    &nbsp; | &nbsp;
+                    Score Difference:
+                    {{ team.score_difference }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+
+    <p>No teams available.</p>
+
+    {% endif %}
+
+</section>   
+
+
+    <!-- MERGE SORT -->
+
+    <section class="panel">
+
+        <h2>🏆 Leaderboard Using Merge Sort</h2>
+
+        {% if leaderboard %}
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Rank</th>
+                    <th>Team</th>
+                    <th>Played</th>
+                    <th>Won</th>
+                    <th>Draw</th>
+                    <th>Lost</th>
+                    <th>Points</th>
+                    <th>Score Diff</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for team in leaderboard %}
+
+                <tr>
+
+                    <td>{{ loop.index }}</td>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.played }}</td>
+                    <td>{{ team.wins }}</td>
+                    <td>{{ team.draws }}</td>
+                    <td>{{ team.losses }}</td>
+                    <td>{{ team.points }}</td>
+
+                    <td>
+                        {% if team.score_difference >= 0 %}
+                        +{{ team.score_difference }}
+                        {% else %}
+                        {{ team.score_difference }}
+                        {% endif %}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        {% else %}
+
+        <p>No teams available for ranking.</p>
+
+        {% endif %}
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

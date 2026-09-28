@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Alpha",
+        "played": 2,
+        "wins": 2,
+        "draws": 0,
+        "losses": 0,
+        "points": 6,
+        "score_for": 16,
+        "score_against": 11,
+        "score_difference": 5
+    },
+    {
+        "name": "Beta",
+        "played": 2,
+        "wins": 0,
+        "draws": 1,
+        "losses": 1,
+        "points": 1,
+        "score_for": 9,
+        "score_against": 12,
+        "score_difference": -3
+    },
+    {
+        "name": "Kings",
+        "played": 2,
+        "wins": 0,
+        "draws": 1,
+        "losses": 1,
+        "points": 1,
+        "score_for": 7,
+        "score_against": 10,
+        "score_difference": -3
+    },
+    {
+        "name": "Warriors",
+        "played": 2,
+        "wins": 1,
+        "draws": 0,
+        "losses": 1,
+        "points": 3,
+        "score_for": 12,
+        "score_against": 11,
+        "score_difference": 1
+    }
+]
