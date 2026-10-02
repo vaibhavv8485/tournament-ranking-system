@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 import json
 import os
+import uuid
 
 from team import Team
 from bst import TeamBST
@@ -9,12 +10,21 @@ from heap import MaxHeap
 
 
 app = Flask(__name__)
+app.secret_key = "tournament-ranking-secret-key"
 
 team_bst = TeamBST()
+BASE_DATA_FILE = "data.json"
 
-DATA_FILE = "data.json"
 
+def get_data_file():
 
+    if "tournament_id" not in session:
+
+        session["tournament_id"] = uuid.uuid4().hex
+
+    tournament_id = session["tournament_id"]
+
+    return f"data_{tournament_id}.json"
 def save_data():
 
     teams = team_bst.inorder()
@@ -24,29 +34,55 @@ def save_data():
     for team in teams:
         data.append(team.to_dict())
 
-    with open(DATA_FILE, "w") as file:
+    with open(get_data_file(), "w") as file:
         json.dump(data, file, indent=4)
-
-
 def load_data():
 
-    if not os.path.exists(DATA_FILE):
+    data_file = get_data_file()
+
+    if os.path.exists(data_file):
+
+        with open(data_file, "r") as file:
+            content = file.read().strip()
+
+        if content:
+
+            data = json.loads(content)
+
+            for team_data in data:
+
+                team = Team.from_dict(team_data)
+
+                team_bst.insert(team)
+
         return
+    if session.get("tournament_initialized", False):
 
-    with open(DATA_FILE, "r") as file:
-        content = file.read().strip()
-
-    if not content:
         return
+    if os.path.exists(BASE_DATA_FILE):
 
-    data = json.loads(content)
+        with open(BASE_DATA_FILE, "r") as file:
+            content = file.read().strip()
 
-    for team_data in data:
+        if content:
 
-        team = Team.from_dict(team_data)
+            data = json.loads(content)
 
-        team_bst.insert(team)
+            for team_data in data:
 
+                team = Team.from_dict(team_data)
+
+                team_bst.insert(team)
+
+            save_data()
+@app.before_request
+def prepare_tournament():
+
+    global team_bst
+
+    team_bst = TeamBST()
+
+    load_data()
 
 @app.route("/")
 def home():
@@ -170,8 +206,6 @@ def search_team():
         "search.html",
         team=team
     )
-load_data()
-
 @app.route("/reset", methods=["POST"])
 def reset_tournament():
 
@@ -179,10 +213,15 @@ def reset_tournament():
 
     team_bst = TeamBST()
 
-    save_data()
+    data_file = get_data_file()
+
+    if os.path.exists(data_file):
+
+        os.remove(data_file)
+
+    session["tournament_initialized"] = True
 
     return redirect("/")
-
 if __name__ == "__main__":
 
     app.run(debug=True)
