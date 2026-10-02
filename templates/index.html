@@ -24,28 +24,42 @@
 
 <main>
 
-    <!-- ADD TEAM -->
+   <!-- ADD TEAM -->
 
-    <section class="panel">
+<section class="panel">
 
-        <h2>👥 Add Team</h2>
+    <h2>➕ Add Team</h2>
 
-        <form action="/add_team" method="POST">
+    <p class="section-subtitle">
+        Register a new team in the tournament
+    </p>
+
+    <form action="/add_team" method="POST" class="modern-form">
+
+        <div class="form-group">
+
+            <label for="team_name">
+                Team Name
+            </label>
 
             <input
                 type="text"
+                id="team_name"
                 name="team_name"
                 placeholder="Enter team name"
                 required
             >
 
-            <button type="submit">
-                Add Team
-            </button>
+        </div>
 
-        </form>
+        <button type="submit">
+            ➕ Add Team
+        </button>
 
-    </section>
+    </form>
+
+</section>
+        
 
 
     <!-- TEAM STATISTICS -->
@@ -109,20 +123,27 @@
 
     </section>
 
+<!-- RECORD MATCH -->
 
-    <!-- RECORD MATCH -->
+<section class="panel">
 
-    <section class="panel">
+    <h2>⚔️ Record Match</h2>
 
-        <h2>⚔️ Record Match</h2>
+    <p class="section-subtitle">
+        Enter the match result and update team rankings
+    </p>
 
-        <form action="/record_match" method="POST">
+    <form action="/record_match" method="POST" class="match-form">
 
-            <label>Team A:</label>
+        <div class="match-team">
 
-            <select name="team_a" required>
+            <label for="team_a">
+                🏠 Team A
+            </label>
 
-                <option value="">
+            <select id="team_a" name="team_a" required>
+
+                <option value="" disabled selected>
                     Select Team A
                 </option>
 
@@ -136,26 +157,61 @@
 
             </select>
 
+        </div>
 
-            <label>Score:</label>
+
+        <div class="score-box">
+
+            <label for="score_a">
+                Score
+            </label>
 
             <input
                 type="number"
+                id="score_a"
                 name="score_a"
                 min="0"
-                placeholder="Score"
+                placeholder="0"
                 required
             >
 
+        </div>
 
-            <br><br>
+
+        <div class="vs">
+
+            <span>VS</span>
+
+        </div>
 
 
-            <label>Team B:</label>
+        <div class="score-box">
 
-            <select name="team_b" required>
+            <label for="score_b">
+                Score
+            </label>
 
-                <option value="">
+            <input
+                type="number"
+                id="score_b"
+                name="score_b"
+                min="0"
+                placeholder="0"
+                required
+            >
+
+        </div>
+
+
+        <div class="match-team">
+
+            <label for="team_b">
+                ✈️ Team B
+            </label>
+
+            <select id="team_b" name="team_b" required>
+
+                <option value="" disabled selected>
                     Select Team B
                 </option>
 
@@ -169,83 +225,111 @@
 
             </select>
 
-
-            <label>Score:</label>
-
-            <input
-                type="number"
-                name="score_b"
-                min="0"
-                placeholder="Score"
-                required
-            >
+        </div>
 
 
-            <br><br>
-
+        <div class="match-submit">
 
             <button type="submit">
-                Record Match
+                ⚡ Record Result
             </button>
 
-        </form>
+        </div>
 
-    </section>
+    </form>
 
+</section>
+   
+<!-- BST SEARCH -->
 
-    <!-- SEARCH BST -->
+<section class="panel">
 
-    <section class="panel">
+    <h2>🔎 Search Team</h2>
 
-        <h2>🔎 Search Team Using BST</h2>
+    <p class="section-subtitle">
+        Find team statistics using Binary Search Tree (BST)
+    </p>
 
-        <form action="/search" method="POST">
+    <form action="/search" method="POST" class="search-form">
+
+        <div class="form-group">
+
+            <label for="search_team">
+                Team Name
+            </label>
 
             <input
                 type="text"
+                id="search_team"
                 name="team_name"
-                placeholder="Enter team name"
+                placeholder="Enter team name to search"
                 required
             >
 
-            <button type="submit">
-                Search
-            </button>
+        </div>
 
-        </form>
+        <button type="submit">
+            🔎 Search Team
+        </button>
 
-    </section>
+    </form>
 
+    <div class="algorithm-badge">
+        🌳 Binary Search Tree
+    </div>
+
+</section>
+
+   
 <!-- MAX HEAP -->
 
 <section class="panel">
 
-    <h2>🔥 Top 3 Teams Using Max Heap</h2>
+    <h2>🔥 Top 3 Teams</h2>
+
+    <p class="section-subtitle">
+        Ranked using Max Heap
+    </p>
 
     {% if top_teams %}
 
-    <div class="top-teams">
+    <div class="podium">
 
         {% for team in top_teams %}
 
-        <div class="top-team">
+        <div class="podium-card rank-{{ loop.index }}">
 
-            <div class="rank">
-                #{{ loop.index }}
+            <div class="podium-rank">
+
+                {% if loop.index == 1 %}
+                    🥇
+                {% elif loop.index == 2 %}
+                    🥈
+                {% else %}
+                    🥉
+                {% endif %}
+
             </div>
 
-            <div class="team-info">
+            <h3>{{ team.name }}</h3>
 
-                <h3>{{ team.name }}</h3>
+            <div class="podium-points">
+                {{ team.points }}
+            </div>
 
-                <p>
-                    <strong>{{ team.points }}</strong> Points
-                    &nbsp; | &nbsp;
-                    {{ team.wins }} Wins
-                    &nbsp; | &nbsp;
-                    Score Difference:
-                    {{ team.score_difference }}
-                </p>
+            <span>POINTS</span>
+
+            <div class="podium-details">
+
+                <div>
+                    <strong>{{ team.wins }}</strong>
+                    <small>Wins</small>
+                </div>
+
+                <div>
+                    <strong>{{ team.score_difference }}</strong>
+                    <small>Score Diff</small>
+                </div>
 
             </div>
 
@@ -261,18 +345,23 @@
 
     {% endif %}
 
-</section>   
-
+</section>
 
     <!-- MERGE SORT -->
 
-    <section class="panel">
+<section class="panel">
 
-        <h2>🏆 Leaderboard Using Merge Sort</h2>
+    <h2>🏆 Tournament Leaderboard</h2>
 
-        {% if leaderboard %}
+    <p class="section-subtitle">
+        Rankings generated using Merge Sort
+    </p>
 
-        <table>
+    {% if leaderboard %}
+
+    <div class="table-wrapper">
+
+        <table class="leaderboard-table">
 
             <thead>
 
@@ -295,20 +384,60 @@
 
                 <tr>
 
-                    <td>{{ loop.index }}</td>
-                    <td>{{ team.name }}</td>
+                    <td>
+
+                        {% if loop.index == 1 %}
+                            🥇
+                        {% elif loop.index == 2 %}
+                            🥈
+                        {% elif loop.index == 3 %}
+                            🥉
+                        {% else %}
+                            {{ loop.index }}
+                        {% endif %}
+
+                    </td>
+
+                    <td class="team-name">
+                        {{ team.name }}
+                    </td>
+
                     <td>{{ team.played }}</td>
-                    <td>{{ team.wins }}</td>
+
+                    <td class="wins">
+                        {{ team.wins }}
+                    </td>
+
                     <td>{{ team.draws }}</td>
+
                     <td>{{ team.losses }}</td>
-                    <td>{{ team.points }}</td>
+
+                    <td class="points">
+                        {{ team.points }}
+                    </td>
 
                     <td>
-                        {% if team.score_difference >= 0 %}
-                        +{{ team.score_difference }}
+
+                        {% if team.score_difference > 0 %}
+
+                        <span class="positive">
+                            +{{ team.score_difference }}
+                        </span>
+
+                        {% elif team.score_difference < 0 %}
+
+                        <span class="negative">
+                            {{ team.score_difference }}
+                        </span>
+
                         {% else %}
-                        {{ team.score_difference }}
+
+                        <span class="neutral">
+                            0
+                        </span>
+
                         {% endif %}
+
                     </td>
 
                 </tr>
@@ -319,15 +448,38 @@
 
         </table>
 
-        {% else %}
+    </div>
 
-        <p>No teams available for ranking.</p>
+    {% else %}
 
-        {% endif %}
+    <p>No teams available for ranking.</p>
 
-    </section>
+    {% endif %}
+
+</section>
 
 </main>
+<footer class="site-footer">
+
+    <div class="footer-title">
+        🏆 Tournament Ranking System
+    </div>
+
+    <p>
+        Built using Data Structures & Algorithms
+    </p>
+
+    <div class="footer-tech">
+        <span>🌳 BST</span>
+        <span>🔥 Max Heap</span>
+        <span>🔀 Merge Sort</span>
+    </div>
+
+    <p class="footer-copy">
+        Academic Project • DSA
+    </p>
+
+</footer>
 
 </body>
 

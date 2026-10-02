@@ -1,46 +1,68 @@
 [
     {
-        "name": "Alpha",
-        "played": 2,
-        "wins": 2,
-        "draws": 0,
-        "losses": 0,
-        "points": 6,
-        "score_for": 16,
-        "score_against": 11,
-        "score_difference": 5
-    },
-    {
-        "name": "Beta",
-        "played": 2,
-        "wins": 0,
-        "draws": 1,
-        "losses": 1,
-        "points": 1,
-        "score_for": 9,
-        "score_against": 12,
-        "score_difference": -3
-    },
-    {
-        "name": "Kings",
-        "played": 2,
-        "wins": 0,
-        "draws": 1,
-        "losses": 1,
-        "points": 1,
-        "score_for": 7,
-        "score_against": 10,
-        "score_difference": -3
-    },
-    {
-        "name": "Warriors",
+        "name": "Chennai Super Kings",
         "played": 2,
         "wins": 1,
         "draws": 0,
         "losses": 1,
         "points": 3,
-        "score_for": 12,
-        "score_against": 11,
-        "score_difference": 1
+        "score_for": 360,
+        "score_against": 354,
+        "score_difference": 6
+    },
+    {
+        "name": "Delhi Capitals",
+        "played": 2,
+        "wins": 0,
+        "draws": 0,
+        "losses": 2,
+        "points": 0,
+        "score_for": 295,
+        "score_against": 325,
+        "score_difference": -30
+    },
+    {
+        "name": "Kolkata Knight Riders",
+        "played": 2,
+        "wins": 1,
+        "draws": 0,
+        "losses": 1,
+        "points": 3,
+        "score_for": 320,
+        "score_against": 310,
+        "score_difference": 10
+    },
+    {
+        "name": "Mumbai Indians",
+        "played": 2,
+        "wins": 2,
+        "draws": 0,
+        "losses": 0,
+        "points": 6,
+        "score_for": 340,
+        "score_against": 325,
+        "score_difference": 15
+    },
+    {
+        "name": "Punjab Kings",
+        "played": 2,
+        "wins": 0,
+        "draws": 1,
+        "losses": 1,
+        "points": 1,
+        "score_for": 349,
+        "score_against": 365,
+        "score_difference": -16
+    },
+    {
+        "name": "Royal Challengers Bengaluru",
+        "played": 2,
+        "wins": 1,
+        "draws": 1,
+        "losses": 0,
+        "points": 4,
+        "score_for": 335,
+        "score_against": 320,
+        "score_difference": 15
     }
 ]
