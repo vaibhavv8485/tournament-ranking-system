@@ -1031,3 +1031,78 @@ main {
 
     font-size: 12px;
 }
+/* ========================= */
+/* SORTING COMPLEXITY TABLE  */
+/* ========================= */
+
+.complexity-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+.complexity-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.complexity-table th,
+.complexity-table td {
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.complexity-table th {
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 14px;
+}
+
+.complexity-table td {
+    color: #475569;
+    font-size: 14px;
+}
+
+.complexity-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.used-algorithm {
+    background: #eef2ff;
+}
+
+.used-algorithm td {
+    color: #3730a3;
+}
+
+.used-badge {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 3px 8px;
+
+    background: #4f46e5;
+    color: white;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.complexity-note {
+    margin-top: 20px;
+    padding: 16px;
+
+    background: #f8fafc;
+
+    border-left: 4px solid #4f46e5;
+
+    border-radius: 10px;
+
+    color: #475569;
+    font-size: 14px;
+    line-height: 1.6;
+}
