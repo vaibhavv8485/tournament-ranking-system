@@ -57,6 +57,25 @@
         </button>
 
     </form>
+<div class="reset-area">
+
+    <form
+        action="/reset"
+        method="POST"
+        onsubmit="return confirm('Are you sure you want to clear all teams and match data? This cannot be undone.');"
+    >
+
+        <button type="submit" class="reset-button">
+            🏁 Start New Tournament
+        </button>
+
+    </form>
+
+    <p>
+       Are you sure you want to clear all teams and match data? This cannot be undone.
+    </p>
+
+</div>
 
 </section>
         

@@ -172,6 +172,17 @@ def search_team():
     )
 load_data()
 
+@app.route("/reset", methods=["POST"])
+def reset_tournament():
+
+    global team_bst
+
+    team_bst = TeamBST()
+
+    save_data()
+
+    return redirect("/")
+
 if __name__ == "__main__":
 
     app.run(debug=True)

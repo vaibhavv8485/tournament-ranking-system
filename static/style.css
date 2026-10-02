@@ -989,3 +989,45 @@ main {
 
     margin-bottom: 0 !important;
 }
+/* ========================= */
+/* RESET TOURNAMENT           */
+/* ========================= */
+
+.reset-area {
+    margin-top: 25px;
+    padding-top: 20px;
+
+    border-top: 1px solid #e2e8f0;
+
+    text-align: center;
+}
+
+.reset-button {
+    background: linear-gradient(
+        135deg,
+        #dc2626,
+        #b91c1c
+    );
+
+    box-shadow:
+        0 6px 15px rgba(220, 38, 38, 0.20);
+}
+
+.reset-button:hover {
+    background: linear-gradient(
+        135deg,
+        #b91c1c,
+        #991b1b
+    );
+
+    box-shadow:
+        0 10px 22px rgba(220, 38, 38, 0.30);
+}
+
+.reset-area p {
+    margin-top: 10px;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
